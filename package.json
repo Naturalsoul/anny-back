@@ -1,0 +1,32 @@
+{
+  "name": "anny-back",
+  "version": "1.0.0",
+  "description": "Backend proyecto contabilidad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naturalsoul/anny-back.git"
+  },
+  "keywords": [
+    "contabilidad",
+    "node",
+    "anny",
+    "mongo"
+  ],
+  "author": "Naturalsoul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naturalsoul/anny-back/issues"
+  },
+  "homepage": "https://github.com/Naturalsoul/anny-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.7",
+    "mongoose": "^5.7.1"
+  }
+}
