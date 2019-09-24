@@ -1,14 +1,15 @@
-const { Schema, model } = require('mongoose');
+const { model, Schema } = require('mongoose');
 
 module.exports = {
     company: model (
         'company',
         Schema({
             name: String,
-            rut: String,
+            rut: { type: String, required: true, unique: true, },
             active: { type: Boolean, default: true },
             created_at: { type: Date, default: Date.now },
-        })
+        }),
+        'company'
     ),
     worker: model (
         'worker',
@@ -19,6 +20,7 @@ module.exports = {
             from_date: { type: Date, default: Date.now },
             to_date: { type: Date, default: null },
             created_at: { type: Date, default: Date.now },
-        })
+        }),
+        'worker'
     ),
 };

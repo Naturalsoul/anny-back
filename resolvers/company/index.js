@@ -10,7 +10,7 @@ module.exports = {
         return companies;
     },    
     saveCompany: async ({ name, rut }) => {
-        const { _id } = await save (
+        const { _id, errmsg } = await save (
             company,
             {
                 name,
@@ -18,10 +18,11 @@ module.exports = {
             }
         );
 
-        return _id;
+        if (typeof _id !== 'undefined') return _id;
+        else throw new Error(errmsg);
     },
     updateCompany: async ({ _id, name, rut }) => {
-        const { _id } = await update (
+        const { errmsg } = await update (
             company,
             {
                 _id,
@@ -32,10 +33,11 @@ module.exports = {
             }
         );
 
-        return _id;
+        if (typeof errmsg !== 'undefined') throw new Error(errmsg);
+        else return _id;
     },
     deactiveCompany: async ({ _id }) => {
-        const { _id } = await update (
+        const { errmsg } = await update (
             company,
             {
                 _id,
@@ -45,10 +47,11 @@ module.exports = {
             }
         );
 
-        return _id;
+        if (typeof errmsg !== 'undefined') throw new Error(errmsg);
+        else return _id;
     },
     activeCompany: async ({ _id }) => {
-        const { _id } = await update (
+        const { errmsg } = await update (
             company,
             {
                 _id,
@@ -58,6 +61,7 @@ module.exports = {
             }
         );
 
-        return _id;
+        if (typeof errmsg !== 'undefined') throw new Error(errmsg);
+        else return _id;
     },
 };

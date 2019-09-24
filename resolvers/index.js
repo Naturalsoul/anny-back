@@ -25,4 +25,4 @@ module.exports = {
     ...CompanyResolver,
     ...WorkerResolver,
     Date: DateType,
-}
+};
