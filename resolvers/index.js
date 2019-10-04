@@ -1,6 +1,7 @@
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 
+const LoginResolver = require('./login');
 const CompanyResolver = require('./company');
 const WorkerResolver = require('./worker');
 
@@ -22,6 +23,7 @@ const DateType = new GraphQLScalarType({
 });
 
 module.exports = {
+    ...LoginResolver,
     ...CompanyResolver,
     ...WorkerResolver,
     Date: DateType,

@@ -1,11 +1,24 @@
 const { model, Schema } = require('mongoose');
 
 module.exports = {
+    user: model (
+        'user',
+        Schema({
+            name: String,
+            email: { type: String, unique: true, },
+            avatar: String,
+            googleId: String,
+            tokenId: String,
+            accessToken: String,
+            created_at: { type: Date, default: Date.now }
+        }),
+        'user'
+    ),
     company: model (
         'company',
         Schema({
             name: String,
-            rut: { type: String, required: true, unique: true, },
+            rut: String,
             active: { type: Boolean, default: true },
             created_at: { type: Date, default: Date.now },
         }),
