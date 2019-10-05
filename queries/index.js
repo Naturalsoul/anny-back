@@ -1,7 +1,7 @@
 module.exports = {
     login: {
         doLogin: `
-            doLogin(name: String!, email: String!, avatar: String!, tokenId: String!, accessToken: String!, googleId: String!): String
+            doLogin(name: String!, email: String!, avatar: String!, googleId: String!): String
         `,
         getUserInfo: `
             getUserInfo(tokendId: String!): User
@@ -9,7 +9,7 @@ module.exports = {
     },
     company: {
         getCompanies: `
-            getCompanies: [ Company ]
+            getCompanies(token: String!): [ Company ]
         `,
     }
 };

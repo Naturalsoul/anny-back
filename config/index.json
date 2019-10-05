@@ -1,0 +1,9 @@
+{
+    "session": {
+        "clientId": "952083819906-s3sut4bghs9f1op2lq9u40tni2me4gca.apps.googleusercontent.com",
+        "clientSecret": "KOeFebjbIZfkHlyX-WzCpOSk",
+        "memcacheURL": "memcached-15001.c62.us-east-1-4.ec2.cloud.redislabs.com:15001",
+        "memcacheUsername": "mc-r0jAE",
+        "memcachePass": "XeCeZGpRpRJFbUNKC4fbWihIn5dU1x5M"
+    }
+}

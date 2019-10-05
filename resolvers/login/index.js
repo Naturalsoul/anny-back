@@ -1,37 +1,42 @@
-const jwt = require('jwt-simple');
+const jsonwebtoken = require('jsonwebtoken');
+require('dotenv').config();
+
 const { find, save, update } = require('../../db');
 const { user } = require('../../models');
-const secret = 'KOeFebjbIZfkHlyX-WzCpOSk';
 
 module.exports = {
-    doLogin: async ({ name, email, avatar, googleId, tokenId, accessToken }) => {
-        console.log('verifying token...')
-        accessToken = await jwt.decode(accessToken, secret);
-        console.log('accessToken', accessToken);
-
-        let { tokenId: _tokenId, errmsg } = await find(
+    doLogin: async ({ name, email, avatar, googleId }) => {
+        const userData = await find (
             user,
             null,
             {
-                tokenId,
                 email,
+                googleId,
             }
         );
 
-        if (typeof _tokenId === 'undefined') {
-            const { _tokenId } = await save (
-                user,
-                {
-                    name,
-                    email,
-                    avatar,
-                    googleId,
-                    tokenId,
-                    accessToken,
-                }
+        if (typeof userData.errmsg !== 'undefined') {
+            console.log(userData.errmsg);
+            throw new Error(`Hubo un error al intentar autenticarse en la aplicación.`);
+        }
+
+        if (userData[0]._id) {
+            return  jsonwebtoken.sign(
+                { _id: userData[0]._id, email: userData[0].email },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' },
             );
         } else {
-            return _tokenId;
+                const { _id } = await save (
+                    user,
+                    { name, email, avatar, googleId }
+                );
+
+                return jsonwebtoken.sign(
+                    { _id, email },
+                    process.env.JWT_SECRET,
+                    { expiresIn: '1y' },
+                );
         }
     },
 };

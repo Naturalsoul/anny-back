@@ -19,6 +19,7 @@ module.exports = {
         Schema({
             name: String,
             rut: String,
+            user: { type: Schema.Types.ObjectId, ref: 'user' },
             active: { type: Boolean, default: true },
             created_at: { type: Date, default: Date.now },
         }),

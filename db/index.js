@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 mongoose.Promise = global.Promise;
 
 module.exports = {
@@ -6,7 +8,8 @@ module.exports = {
     initialize: () => {
         try {
             mongoose.connect(
-                `mongodb://127.0.0.1:27017/anny`,
+                process.env.DB_HOST,
+                //process.env.DB_HOST_LOCAL,
                 { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true, }
             );
 

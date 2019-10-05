@@ -1,20 +1,36 @@
+const jsonwebtoken = require('jsonwebtoken');
+require('dotenv').config();
+
 const { find, save, update } = require('../../db');
 const { company } = require('../../models');
 
 module.exports = {
-    getCompanies: async () => {
+    getCompanies: async ({ token }) => {
+        const { _id } = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+
+        if (!_id) {
+            throw new Error('No se encuentra autenticado.');
+        }
+
         const companies = await find (
-            company
+            company,
+            null,
+            { _id }
         );
 
         return companies;
     },    
-    saveCompany: async ({ name, rut }) => {
+    saveCompany: async ({ name, rut, token }) => {
+        const userData = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+
+        if (!userData._id) throw new Error('No se encuentra autenticado.');
+
         const { _id, errmsg } = await save (
             company,
             {
                 name,
                 rut,
+                user: userData._id,
             }
         );
 
