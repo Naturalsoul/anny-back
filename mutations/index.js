@@ -1,16 +1,13 @@
 module.exports = {
     company: {
         saveCompany: `
-            saveCompany(name: String, rut: String): ID
+            saveCompany(token: String!, name: String!, rut: String!): ID
         `,
         updateCompany: `
-            updateCompany(_id: String, name: String, rut: String): ID
+            updateCompany(_id: String!, name: String!, rut: String!, token: String!): ID
         `,
-        deactiveCompany: `
-            deactiveCompany(_id: String): ID
-        `,
-        activeCompany: `
-            activeCompany(_id: String): ID
+        changeStatusCompany: `
+            changeStatusCompany(token: String!, _id: String!, rut: String!, active: Boolean!): ID
         `,
     },
 };

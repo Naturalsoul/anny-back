@@ -8,8 +8,8 @@ module.exports = {
     initialize: () => {
         try {
             mongoose.connect(
-                process.env.DB_HOST,
-                //process.env.DB_HOST_LOCAL,
+                //process.env.DB_HOST,
+                process.env.DB_HOST_LOCAL,
                 { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true, }
             );
 

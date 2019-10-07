@@ -1,7 +1,7 @@
 const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config();
 
-const { find, save, update } = require('../../db');
+const { find, save, update, ObjectId } = require('../../db');
 const { company } = require('../../models');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
         const companies = await find (
             company,
             null,
-            { _id }
+            { user: ObjectId(_id) }
         );
 
         return companies;
@@ -37,11 +37,16 @@ module.exports = {
         if (typeof _id !== 'undefined') return _id;
         else throw new Error(errmsg);
     },
-    updateCompany: async ({ _id, name, rut }) => {
+    updateCompany: async ({ _id, name, rut, token }) => {
+        const userData = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+
+        if (!userData._id) throw new Error('No se encuentra autenticado');
+
         const { errmsg } = await update (
             company,
             {
-                _id,
+                user: ObjectId(userData._id),
+                _id: ObjectId(_id),
             },
             {
                 name,
@@ -66,14 +71,19 @@ module.exports = {
         if (typeof errmsg !== 'undefined') throw new Error(errmsg);
         else return _id;
     },
-    activeCompany: async ({ _id }) => {
+    changeStatusCompany: async ({ _id, rut, active, token }) => {
+        const userData = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+
+        if (!userData._id) throw new Error('No se encuentra autenticado.');
+
         const { errmsg } = await update (
             company,
             {
-                _id,
+                _id: ObjectId(_id),
+                rut,
             },
             {
-                active: true,
+                active,
             }
         );
 

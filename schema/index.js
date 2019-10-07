@@ -5,7 +5,7 @@ const { login: { doLogin } } = require('../queries');
 
 // Companies
 const { company: { getCompanies } } = require('../queries');
-const { company: { saveCompany, updateCompany } } = require('../mutations');
+const { company: { saveCompany, updateCompany, changeStatusCompany } } = require('../mutations');
 
 // types
 const { User, Company } = require('../types');
@@ -22,6 +22,7 @@ module.exports = buildSchema (
         type Mutation {
             ${saveCompany}
             ${updateCompany}
+            ${changeStatusCompany}
         }
         
         ${User}

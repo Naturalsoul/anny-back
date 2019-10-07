@@ -20,7 +20,7 @@ module.exports = {
             throw new Error(`Hubo un error al intentar autenticarse en la aplicación.`);
         }
 
-        if (userData[0]._id) {
+        if (userData.length) {
             return  jsonwebtoken.sign(
                 { _id: userData[0]._id, email: userData[0].email },
                 process.env.JWT_SECRET,
