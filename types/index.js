@@ -19,4 +19,14 @@ module.exports = {
             created_at: Date
         }
     `,
+    Worker: `
+        type Worker {
+            _id: ID,
+            name: String,
+            rut: String,
+            company: Company,
+            from_date: Date,
+            to_date: Date
+        }
+    `,
 };

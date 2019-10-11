@@ -11,5 +11,10 @@ module.exports = {
         getCompanies: `
             getCompanies(token: String!): [ Company ]
         `,
-    }
+    },
+    worker: {
+        getWorkers: `
+            getWorkers(token: String!, _id: String!): [ Worker ]
+        `,
+    },
 };

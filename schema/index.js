@@ -7,8 +7,12 @@ const { login: { doLogin } } = require('../queries');
 const { company: { getCompanies } } = require('../queries');
 const { company: { saveCompany, updateCompany, changeStatusCompany } } = require('../mutations');
 
+// Workers
+const { worker: { getWorkers } } = require('../queries');
+const { worker: { saveWorker } } = require('../mutations');
+
 // types
-const { User, Company } = require('../types');
+const { User, Company, Worker } = require('../types');
 
 module.exports = buildSchema (
     `
@@ -17,15 +21,18 @@ module.exports = buildSchema (
         type Query {
             ${doLogin}
             ${getCompanies}
+            ${getWorkers}
         }
 
         type Mutation {
             ${saveCompany}
             ${updateCompany}
             ${changeStatusCompany}
+            ${saveWorker}
         }
         
         ${User}
         ${Company}
+        ${Worker}
     `
 );

@@ -4,10 +4,15 @@ module.exports = {
             saveCompany(token: String!, name: String!, rut: String!): ID
         `,
         updateCompany: `
-            updateCompany(_id: String!, name: String!, rut: String!, token: String!): ID
+            updateCompany(token: String!, _id: String!, name: String!, rut: String!): ID
         `,
         changeStatusCompany: `
             changeStatusCompany(token: String!, _id: String!, rut: String!, active: Boolean!): ID
+        `,
+    },
+    worker: {
+        saveWorker: `
+            saveWorker(token: String!, company: String!, name: String!, rut: String!, from_date: Date!): ID
         `,
     },
 };
