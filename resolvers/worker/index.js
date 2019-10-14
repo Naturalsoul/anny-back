@@ -12,7 +12,7 @@ module.exports = {
 
         const workers = await find (
             worker,
-            { path: 'company', select: 'name' },
+            { path: 'company', select: 'name rut' },
             { company: ObjectId(_id) }
         );
 
