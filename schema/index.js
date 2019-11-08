@@ -9,7 +9,7 @@ const { company: { saveCompany, updateCompany, changeStatusCompany } } = require
 
 // Workers
 const { worker: { getWorkers } } = require('../queries');
-const { worker: { saveWorker } } = require('../mutations');
+const { worker: { saveWorker, updateWorker } } = require('../mutations');
 
 // types
 const { User, Company, Worker } = require('../types');
@@ -29,6 +29,7 @@ module.exports = buildSchema (
             ${updateCompany}
             ${changeStatusCompany}
             ${saveWorker}
+            ${updateWorker}
         }
         
         ${User}

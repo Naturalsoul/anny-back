@@ -14,5 +14,8 @@ module.exports = {
         saveWorker: `
             saveWorker(token: String!, company: String!, name: String!, rut: String!, from_date: Date!): ID
         `,
+        updateWorker: `
+            updateWorker(token: String!, _id: String!, name: String!, rut: String!, from_date: Date!, to_date: Date): ID
+        `,
     },
 };
